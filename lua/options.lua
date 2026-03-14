@@ -28,4 +28,6 @@ vim.diagnostic.config({
     virtual_lines = true,
 })
 
-
+vim.keymap.set("n", "<Leader>d", function ()
+    vim.diagnostic.open_float({scope="line"})
+end)
