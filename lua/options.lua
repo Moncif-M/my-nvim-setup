@@ -31,3 +31,24 @@ vim.diagnostic.config({
 vim.keymap.set("n", "<Leader>d", function ()
     vim.diagnostic.open_float({scope="line"})
 end)
+vim.keymap.set('n', '<C-h>', '<C-w>h', { noremap = true })
+vim.keymap.set('n', '<C-j>', '<C-w>j', { noremap = true })
+vim.keymap.set('n', '<C-k>', '<C-w>k', { noremap = true })
+vim.keymap.set('n', '<C-l>', '<C-w>l', { noremap = true })
+vim.keymap.set('n', '<C-Up>',    '<C-w>+')
+vim.keymap.set('n', '<C-Down>',  '<C-w>-')
+vim.keymap.set('n', '<C-Left>',  '<C-w><')
+vim.keymap.set('n', '<C-Right>', '<C-w>>')
+-- keymap for executing js files
+vim.api.nvim_set_keymap(
+  'n',
+  '<leader>r',
+  ':split | terminal node %<CR>',
+  { noremap = true, silent = true }
+)
+vim.api.nvim_set_keymap(
+  'n',
+  '<leader>p',
+  ':split | terminal python3 %<CR>',
+  { noremap = true, silent = true }
+)
