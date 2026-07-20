@@ -138,17 +138,17 @@ require("lazy").setup({
      completion = { documentation = { auto_show = true} },
      sources = {
          default = {'lazydev','lsp', 'path', 'snippets', 'buffer' },
-     providers = {
-         lazydev = {
-             name = "LazyDev",
-             module = "lazydev.integrations.blink",
-             -- make lazydev completions top priority (see `:h blink.cmp`)
-             score_offset = 100,
-         },
-            }
-        },
+         providers = {
+             lazydev = {
+                 name = "LazyDev",
+                 module = "lazydev.integrations.blink",
+                 -- make lazydev completions top priority (see `:h blink.cmp`)
+                 score_offset = 100,
+             },
+         }
+     },
      fuzzy = { implementation = "prefer_rust_with_warning" }
-    },
+ },
  opts_extend = { "sources.default" }
 },
 {
@@ -159,5 +159,67 @@ require("lazy").setup({
             { path = "${3rd}/luv/library", words = { "vim%.uv" } },
         },
     },
+},
+{
+    "ajbucci/ipynb.nvim",
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter",
+        "neovim/nvim-lspconfig",
+        -- "nvim-tree/nvim-web-devicons", -- optional, for language icons
+        -- "folke/snacks.nvim", -- optional, for inline images
+    },
+    opts = {},
+},
+{
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function ()
+        require('lualine').setup{}
+    end
+},
+{
+    'nvim-telescope/telescope.nvim', version = '*',
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+        -- optional but recommended
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    },
+    config = function ()
+        local builtin = require('telescope.builtin')
+        vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+        vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+        vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+        vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+    end
+},
+{
+    'numToStr/Comment.nvim',
+    opts = {
+        -- add any options here
+    }
+},
+{
+  "karb94/neoscroll.nvim",
+  opts = {},
+},
+{
+	"chrisgrieser/nvim-various-textobjs",
+	event = "VeryLazy",
+	opts = {
+		keymaps = {
+			useDefaults = true,
+		}
+	},
+},
+{
+    "kylechui/nvim-surround",
+    version = "^4.0.0", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    -- Optional: See `:h nvim-surround.configuration` and `:h nvim-surround.setup` for details
+    config = function()
+        require("nvim-surround").setup({
+            -- Put your configuration here
+        })
+    end
 },
 })

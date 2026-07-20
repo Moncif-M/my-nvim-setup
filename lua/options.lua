@@ -39,6 +39,10 @@ vim.keymap.set('n', '<C-Up>',    '<C-w>+')
 vim.keymap.set('n', '<C-Down>',  '<C-w>-')
 vim.keymap.set('n', '<C-Left>',  '<C-w><')
 vim.keymap.set('n', '<C-Right>', '<C-w>>')
+vim.keymap.set('n', '<Leader>h', '<C-w>H')
+vim.keymap.set('n', '<Leader>j', '<C-w>J')
+vim.keymap.set('n', '<Leader>k', '<C-w>K')
+vim.keymap.set('n', '<Leader>l', '<C-w>L')
 -- keymap for executing js files
 vim.api.nvim_set_keymap(
   'n',
@@ -52,3 +56,5 @@ vim.api.nvim_set_keymap(
   ':split | terminal python3 %<CR>',
   { noremap = true, silent = true }
 )
+
+vim.opt.showmode = false
